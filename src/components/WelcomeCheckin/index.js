@@ -1,5 +1,5 @@
-import React from 'react';
-// import PropTypes from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextField, Button, Box, Typography } from "@material-ui/core";
@@ -14,14 +14,14 @@ const useStyles = makeStyles(() =>
   })
 );
 
-
 /**
- *  Step 1
+ * Welcome checkin component
+ * Step 1 of checkin form
  */
-const WelcomeCheckin = (props) => {
+const WelcomeCheckin = ({ handleStep, currentStep }) => {
   const style = useStyles();
 
-/** Validation schema */
+  /** Validation schema */
   const validation = Yup.object().shape({
     flightNumber: Yup.string()
       .min(2, "Too Short!")
@@ -39,73 +39,83 @@ const WelcomeCheckin = (props) => {
   });
 
   /** submit values */
-const onSubmitForm =()=>{}
+  const onSubmitForm = (values) => {
+      handleStep(values);
+  };
 
-    return (
-      <Box my={8} mx={4}>
-        <Typography
-          variant="h4"
-          component="h1"
-          align="left"
-          color="textSecondary"
-        >
-          {" "}
-          Welcome to your web check-in
-        </Typography>
-        <Formik
-          initialValues={{ flightNumber: "", lastName: "" }}
-          validationSchema={validation}
-          onSubmit={onSubmitForm}
-        >
-          {({ errors, touched, handleChange, isSubmitting }) => {
-            return (
-              <Form>
-                <Box my={6}>
-                  <TextField
-                    id="flightNumber"
-                    label="Flight Number"
-                    onChange={handleChange}
-                    error={!!errors.flightNumber}
-                    fullWidth
-                    variant="outlined"
-                  />
-                  {errors.flightNumber && touched.flightNumber ? (
-                    <div className={style.error}>{errors.flightNumber}</div>
-                  ) : null}
-                </Box>
+  return (
+    <div>
+      {currentStep === 1 ? (
+        <Box my={8} mx={4}>
+          <Typography
+            variant="h4"
+            component="h1"
+            align="left"
+            color="textSecondary"
+          >
+            {" "}
+            Welcome to your web check-in
+          </Typography>
+          <Formik
+            initialValues={{ flightNumber: "", lastName: "" }}
+            validationSchema={validation}
+            onSubmit={onSubmitForm}
+          >
+            {({ errors, touched, handleChange, isSubmitting }) => {
+              return (
+                <Form>
+                  <Box my={6}>
+                    <TextField
+                      id="flightNumber"
+                      label="Flight Number"
+                      onChange={handleChange}
+                      error={!!errors.flightNumber}
+                      fullWidth
+                      variant="outlined"
+                    />
+                    {errors.flightNumber && touched.flightNumber ? (
+                      <div className={style.error}>{errors.flightNumber}</div>
+                    ) : null}
+                  </Box>
 
-                <Box>
-                  <TextField
-                    id="lastName"
-                    label="Last Name"
-                    onChange={handleChange}
-                    error={!!errors.lastName}
-                    fullWidth
-                    variant="outlined"
-                  />
-                  {errors.lastName && touched.lastName ? (
-                    <div className={style.error}>{errors.lastName}</div>
-                  ) : null}
-                </Box>
-                <br />
-                <br />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  disabled={isSubmitting}
-                >
-                  Submit
-                </Button>
-              </Form>
-            );
-          }}
-        </Formik>
-      </Box>
-    );
+                  <Box>
+                    <TextField
+                      id="lastName"
+                      label="Last Name"
+                      onChange={handleChange}
+                      error={!!errors.lastName}
+                      fullWidth
+                      variant="outlined"
+                    />
+                    {errors.lastName && touched.lastName ? (
+                      <div className={style.error}>{errors.lastName}</div>
+                    ) : null}
+                  </Box>
+                  <br />
+                  <br />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              );
+            }}
+          </Formik>
+        </Box>
+      ) : null}
+    </div>
+  );
+};
 
-}
-
-WelcomeCheckin.propTypes = {};
+WelcomeCheckin.propTypes = {
+  /** handle submit form */
+  handleStep: PropTypes.func.isRequired,
+  /**the number of the form step */
+  currentStep: PropTypes.number.isRequired,
+};
 
 export default WelcomeCheckin;
