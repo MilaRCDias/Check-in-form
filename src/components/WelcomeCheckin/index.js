@@ -106,4 +106,6 @@ const onSubmitForm =()=>{}
 
 }
 
+WelcomeCheckin.propTypes = {};
+
 export default WelcomeCheckin;
