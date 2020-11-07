@@ -30,30 +30,23 @@ const useStyles = makeStyles(() =>
  * User Form Component
  * Step 2 to user insert all informations
  */
-const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
+const UserForm = ({
+  formValues,
+  currentStep,
+  handleStep,
+  setStep,
+  nationalityList,
+}) => {
   const style = useStyles();
   const [userNationality, setUserNationality] = useState("");
   const userName =
     formValues.lastName?.charAt(0).toUpperCase() +
     formValues.lastName?.slice(1);
 
-  //TODO get from api
-  const nationalityList = [
-    "Portuguese",
-    "Grand Britain",
-    "Germany",
-    "Austria",
-    "Belgium",
-    "France",
-    "Greece",
-    "Spain",
-    "Italia",
-  ];
-
-  /** */
+  /** Initital form values */
   const initialValue = {
     firstName: "",
-    lastName: formValues.lastName  ,
+    lastName: formValues.lastName,
     nationality: "",
     email: "",
     phoneNumber: "",
@@ -70,7 +63,7 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
     terms: "",
   };
 
-  /** Form Validation schema */
+  /** Form Validation schema will validade according also to nationality */
   const validation = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -163,7 +156,6 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
     };
     handleStep(formNewValues);
     setStep(3);
-    console.log(formNewValues, values);
   };
 
   return (
@@ -500,16 +492,18 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
   );
 };
 
- UserForm.propTypes={
-     /** the number of the form step */
-  currentStep: PropTypes.number.isRequired,
-  /** handle submit form */
-  handleStep: PropTypes.func.isRequired,
-  /** object with form information */
-  formValues: PropTypes.shape({}).isRequired,
-  /** set next step */
-  setStep: PropTypes.func.isRequired,
-}
+ UserForm.propTypes = {
+   /** the number of the form step */
+   currentStep: PropTypes.number.isRequired,
+   /** handle submit form */
+   handleStep: PropTypes.func.isRequired,
+   /** object with form information */
+   formValues: PropTypes.shape({}).isRequired,
+   /** set next step */
+   setStep: PropTypes.func.isRequired,
+   /** array with nationality list */
+   nationalityList: PropTypes.array.isRequired,
+ };
 
 
 

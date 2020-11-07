@@ -38,7 +38,7 @@ const WelcomeCheckin = ({ handleStep, currentStep }) => {
       .required("Lastname is required"),
   });
 
-  /** submit values */
+  /** submit values to parent/container component */
   const onSubmitForm = (values) => {
       handleStep(values);
   };

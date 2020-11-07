@@ -9,6 +9,9 @@ describe("the welcome checkin step", () => {
   const props = {
     currentStep: 1,
     handleStep: () => {},
+    formValues: {},
+    setStep: () => {},
+    nationalityList: [],
   };
   beforeAll(() => {
     shallow = createShallow();
@@ -17,7 +20,7 @@ describe("the welcome checkin step", () => {
   it("should capture first name", () => {
     const credentials = { firstName: "first name" };
 
-    const wrapper = mount(shallow(<UserForm  />).get(0));
+    const wrapper = mount(shallow(<UserForm {...props} />).get(0));
     const input = wrapper.find("#firstName");
 
     input.value = credentials.firstName;
@@ -27,7 +30,7 @@ describe("the welcome checkin step", () => {
   it("should capture passport number", () => {
     const credentials = { passportNumber: "ee5432" };
 
-    const wrapper = mount(shallow(<UserForm  />).get(0));
+    const wrapper = mount(shallow(<UserForm {...props} />).get(0));
     const input = wrapper.find("#passportNumber");
 
     input.value = credentials.passportNumber;
@@ -37,7 +40,7 @@ describe("the welcome checkin step", () => {
  it("should capture nationality", () => {
    const credentials = { nationality: "Austria" };
 
-   const wrapper = mount(shallow(<UserForm />).get(0));
+   const wrapper = mount(shallow(<UserForm {...props} />).get(0));
    const input = wrapper.find("#nationality");
 
    input.value = credentials.nationality;
@@ -45,7 +48,7 @@ describe("the welcome checkin step", () => {
  });
 
   it("should match the snapshot", () => {
-    const wrapper = mount(shallow(<UserForm  />).get(0));
+    const wrapper = mount(shallow(<UserForm {...props} />).get(0));
 
     expect(wrapper.html()).toMatchSnapshot();
   });

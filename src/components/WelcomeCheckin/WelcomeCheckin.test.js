@@ -17,7 +17,7 @@ describe("the welcome checkin step", () => {
   it("should capture last name", () => {
     const credentials = { lastName: "wild name" };
 
-    const wrapper = mount(shallow(<WelcomeCheckin />).get(0));
+    const wrapper = mount(shallow(<WelcomeCheckin {...props} />).get(0));
     const input = wrapper.find("#lastName");
 
     input.value = credentials.lastName;
@@ -27,7 +27,7 @@ describe("the welcome checkin step", () => {
   it("should capture flight number", () => {
     const credentials = { flightNumber: "fr1234" };
 
-    const wrapper = mount(shallow(<WelcomeCheckin />).get(0));
+    const wrapper = mount(shallow(<WelcomeCheckin {...props} />).get(0));
     const input = wrapper.find("#flightNumber");
 
     input.value = credentials.flightNumber;
@@ -35,7 +35,7 @@ describe("the welcome checkin step", () => {
   });
 
   it("should match the snapshot", () => {
-    const wrapper = mount(shallow(<WelcomeCheckin  />).get(0));
+    const wrapper = mount(shallow(<WelcomeCheckin {...props} />).get(0));
 
     expect(wrapper.html()).toMatchSnapshot();
   });

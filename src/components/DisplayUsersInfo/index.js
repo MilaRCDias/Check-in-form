@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Button, TextField, Box, Typography } from "@material-ui/core";
 
 /**
- * Step 3
+ * Display user info component
+ * Step 3 to confirm information
  */
 const DisplayUsersInfo = ({ formValues, currentStep, submitForm }) => {
   return (

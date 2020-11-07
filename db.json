@@ -1,5 +1,5 @@
 {
-    "nationality": [
+  "nationality": [
     "Portuguese",
     "Grand Britain",
     "Germany",
@@ -11,6 +11,46 @@
     "Italia"
   ],
   "checkin": [
-      
+    {},
+    {
+      "id": "correia_asd",
+      "flightNumber": "asd",
+      "firstName": "mila",
+      "lastName": "correia",
+      "nationality": "Austria",
+      "email": "milarabello.dias@gmail.com",
+      "phoneNumber": "+351935550670",
+      "passportNumber": "w3333",
+      "city": "Porto",
+      "country": "Portugal",
+      "address": "",
+      "birthdate": "",
+      "birthplace": "",
+      "passportExpireDate": "2020-11-17",
+      "passportDateIssue": "",
+      "passportCityIssue": "",
+      "passportCountryIssue": "",
+      "terms": true
+    },
+    {
+      "id": "dias_123",
+      "flightNumber": "123",
+      "firstName": "mila",
+      "lastName": "dias",
+      "nationality": "Portuguese",
+      "email": "milarabello.dias@gmail.com",
+      "phoneNumber": "+351935550670",
+      "passportNumber": "w3333",
+      "city": "",
+      "country": "",
+      "address": "",
+      "birthdate": "",
+      "birthplace": "",
+      "passportExpireDate": "",
+      "passportDateIssue": "",
+      "passportCityIssue": "",
+      "passportCountryIssue": "",
+      "terms": true
+    }
   ]
 }
