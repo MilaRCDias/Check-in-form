@@ -5,6 +5,7 @@ import { makeStyles, createStyles, useTheme } from "@material-ui/core/styles";
 import UserForm from '../../components/UserForm';
 import WelcomeCheckin from '../../components/WelcomeCheckin';
 import DisplayUsersInfo from '../../components/DisplayUsersInfo';
+import FinishCheckin from '../../components/FinishCheckin';
 
 
 const useStyles = makeStyles(() =>
@@ -31,21 +32,35 @@ const FormContainer = () => {
   const style = useStyles();
 
 const [formValues, setFormValues] = useState({});
-const [step, setStep] = useState(3);
+const [step, setStep] = useState(1);
 
-const submitFirstCheckinInfo =()=>{
+const submitFirstCheckinInfo =(values)=>{
     //TODO send to api lastname and flight number
     // set next step and form values to next step
+    setStep(2);
+    setFormValues(values);
 }
+
+/** Submit Post to api */
+const submitForm = () => {
+// send checkin information to api
+};
 
 return (
   <Box mx="auto" className={screenSM ? style.main : style.mainMobile}>
-    step 1 component - welcome
     <WelcomeCheckin currentStep={step} handleStep={submitFirstCheckinInfo} />
-    step 2 component - insert info
-    <UserForm currentStep={step} formValues={formValues} />
-    step 3 component - show info step 4 component - finished
-    <DisplayUsersInfo currentStep={step} formValues={formValues} />
+    <UserForm
+      currentStep={step}
+      formValues={formValues}
+      handleStep={setFormValues}
+      setStep={setStep}
+    />
+    <DisplayUsersInfo
+      currentStep={step}
+      formValues={formValues}
+      submitForm={submitForm}
+    />
+    <FinishCheckin currentStep={step} />
   </Box>
 );
 }

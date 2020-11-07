@@ -53,7 +53,7 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
   /** */
   const initialValue = {
     firstName: "",
-    lastName: formValues.lastName || null,
+    lastName: formValues.lastName  ,
     nationality: "",
     email: "",
     phoneNumber: "",
@@ -69,16 +69,14 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
     passportCountryIssue: "",
     terms: "",
   };
-  /** */
+
+  /** Form Validation schema */
   const validation = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
       .max(20, "Too Long!")
       .required("Firstname is required"),
-    lastName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Lastname is required"),
+    lastName: Yup.string().nullable(),
     nationality: Yup.string().required("Select a nationality"),
     email: Yup.string().email().required("Email is required"),
     phoneNumber: Yup.string()
@@ -154,11 +152,18 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
     terms: Yup.boolean().required("Terms and conditions are required"),
   });
 
-  /** */
+  /**
+   *  Handle submit form values and set next step
+   * @param {object} values
+   */
   const onSubmitForm = (values) => {
-    console.log(values);
-    handleStep(values);
+    const formNewValues = {
+      flightNumber: formValues.flightNumber,
+      ...values,
+    };
+    handleStep(formNewValues);
     setStep(3);
+    console.log(formNewValues, values);
   };
 
   return (
@@ -465,7 +470,6 @@ const UserForm = ({ formValues, currentStep, handleStep, setStep }) => {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          //checked={termsChecked}
                           onChange={handleChange}
                           name="terms"
                           color="primary"

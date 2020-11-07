@@ -5,18 +5,7 @@ import { Button, TextField, Box, Typography } from "@material-ui/core";
 /**
  * Step 3
  */
-const DisplayUsersInfo = ({ formValues, currentStep }) => {
-
-formValues = {
-  firstName: "mila",
-  lastName: "dias",
-  nationality: "portuguese",
-  email: "milarabello.dias@gmail.com",
-  phoneNumber: "+351935550670",
-  passportNumber: "w3333",
-  terms: true,
-};
-
+const DisplayUsersInfo = ({ formValues, currentStep, submitForm }) => {
   return (
     <Box mx={4} my={8}>
       {currentStep === 3 ? (
@@ -53,7 +42,7 @@ formValues = {
             variant="contained"
             color="primary"
             type="submit"
-           
+            onClick={submitForm}
           >
             Confirm
           </Button>
@@ -68,5 +57,7 @@ DisplayUsersInfo.propTypes = {
   formValues: PropTypes.shape({}).isRequired,
   /** the number of the form step */
   currentStep: PropTypes.number.isRequired,
+  /** handle submit form */
+  submitForm: PropTypes.func.isRequired,
 };
 export default DisplayUsersInfo;
