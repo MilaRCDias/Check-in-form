@@ -1,10 +1,22 @@
 # Check-in-form
 
-Form check-in app
-A Form structured in 4 steps
+A Form component for check-in in 3 steps.
+
+- Responsive
+- According to nationality different fields are shown
+- Used of a mock Restful API
 
 
-## Installation
+
+## Preview online
+
+https://milarcdias.github.io/Check-in-form/
+
+
+### Usage locally
+Download or copy the repository main brach. 
+
+#### Installation
 
 First install all dependencies packages with:
 
@@ -13,9 +25,8 @@ npm install
 ```
 
 
-## Usage
 
-### Mock Server
+#### Mock Server
 
 To mock a RESTfull API the JSON-Server package was used
 
@@ -26,7 +37,7 @@ npm run json:server
 ```
 
 
-### Start the Project
+#### Start the Project
 
 To start the project locally on PORT 8000:
 
